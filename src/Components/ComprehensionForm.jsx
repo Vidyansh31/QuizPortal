@@ -51,7 +51,7 @@ const ComprehensionForm = () => {
       };
 
       await axios.post(
-        "http://localhost:5000/builder/ComprehensionSubmit",
+        "https://quiz-portal-backend-a7rw.vercel.app/builder/ComprehensionSubmit",
         formData
       );
       alert("submitted successfully!");

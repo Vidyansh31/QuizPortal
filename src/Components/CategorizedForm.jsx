@@ -84,7 +84,7 @@ const CategorizedForm = () => {
 
       
 
-      await axios.post("http://localhost:5000/builder/CategorizeSubmit", formData);
+      await axios.post("https://quiz-portal-backend-a7rw.vercel.app/builder/CategorizeSubmit", formData);
       alert("submitted successfully!");
       handleReset();
     } catch (error) {

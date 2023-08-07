@@ -12,7 +12,7 @@ const CategorizeQuestion = () => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/quiz/CategorizeQuestion");
+      const response = await axios.get("https://quiz-portal-backend-a7rw.vercel.app/quiz/CategorizeQuestion");
       const data = response.data;
       setQuestion(data);
     } catch (err) {

@@ -56,7 +56,7 @@ const ClozeForm = () => {
         options
       };
 
-      await axios.post("http://localhost:5000/builder/ClozeSubmit", formData);
+      await axios.post("https://quiz-portal-backend-a7rw.vercel.app/builder/ClozeSubmit", formData);
       alert("submitted successfully!");
       handleReset();
     } catch (error) {
