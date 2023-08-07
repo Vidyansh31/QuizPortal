@@ -33,17 +33,7 @@ const ComprehensionForm = () => {
         return;
       }
 
-      if (
-        !mcqQuestions.question ||
-        !mcqQuestions.options[0].length ||
-        !mcqQuestions.options[1].length ||
-        !mcqQuestions.options[2].length ||
-        !mcqQuestions.options[3].length ||
-        mcqQuestions.correctOption === 0
-      ) {
-        alert("Enter All details");
-        return;
-      }
+    
 
       const formData = {
         passage,
