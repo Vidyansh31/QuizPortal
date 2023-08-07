@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const formRoutes = require('./routes/formRoutes.js');
 
 dotenv.config();
 
@@ -14,6 +15,10 @@ const MONGO_URI = process.env.MONGO_URI;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+
+//routes
+app.use("/",formRoutes);
 
 
 // Database connection

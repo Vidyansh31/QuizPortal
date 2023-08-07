@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import axios  from "axios";
 
 const ClozeForm = () => {
   const [questionSentence, setQuestionSentence] = useState("");
@@ -36,8 +37,31 @@ const ClozeForm = () => {
     setOptions(updatedOptions);
   };
 
+  const handleReset = () => {
+    setQuestionSentence("");
+    setPreview("");
+    setOptions([]);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const formData = {
+        preview,
+        questionSentence,
+        options
+      };
+
+      await axios.post("http://localhost:5000/builder/ClozeSubmit", formData);
+      alert("submitted successfully!");
+      handleReset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error submitting form. Please try again later.");
+    }
+  }
+
   return (
-    <div className="w-60vw mt-10 m-1  border border-transparent shadow-lg p-3">
+    <div className="w-60vw mt-10 m-1  border shadow-lg p-3">
       <div className="w-50vw p-5">
       <h1 className="text-center text-3xl font-bold text-indigo-500 m-5">Question 2</h1>
         <div className="border-b mb-4">
@@ -77,6 +101,20 @@ const ClozeForm = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={handleSubmit}
+          className="bg-green-500 text-white px-4 py-2 rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-200"
+        >
+          Submit
+        </button>
+        <button
+          onClick={handleReset}
+          className="ml-4 bg-red-500 text-white px-4 py-2 rounded-md shadow hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-200"
+        >
+          Reset
+        </button>
       </div>
     </div>
   );
