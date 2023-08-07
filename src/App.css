@@ -4,3 +4,29 @@
   margin: 0;
   padding: 0;
 }
+
+.box{
+    height: 80vh;
+    width: 80vw;
+}
+
+.Categories{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around
+}
+
+.Category{
+  margin: 1rem;
+  height: 70vh;
+  width: 30vw;
+  background-color: lightsalmon;
+  border-radius: 10px;
+}
+
+.Category > h1 {
+  font-size: 1.2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+

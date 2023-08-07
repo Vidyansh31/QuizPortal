@@ -72,11 +72,17 @@ const CategorizedForm = () => {
 
   const handleSubmit = async () => {
     try {
+      if (!category.length || !solutions.length) {
+        alert("Please enter all details.");
+        return;
+      }
       const formData = {
         description,
         category,
         solutions,
       };
+
+      
 
       await axios.post("http://localhost:5000/builder/CategorizeSubmit", formData);
       alert("submitted successfully!");

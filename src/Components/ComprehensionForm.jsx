@@ -21,30 +21,53 @@ const ComprehensionForm = () => {
 
   const handleReset = () => {
     setPassage("");
-    setMcqQuestions([ { question: "", options: ["", "", "", ""], correctOption: 0 }])
+    setMcqQuestions([
+      { question: "", options: ["", "", "", ""], correctOption: 0 },
+    ]);
   };
 
   const handleSubmit = async () => {
     try {
+      if (!passage) {
+        alert("Enter Passage");
+        return;
+      }
+
+      if (
+        !mcqQuestions.question ||
+        !mcqQuestions.options[0].length ||
+        !mcqQuestions.options[1].length ||
+        !mcqQuestions.options[2].length ||
+        !mcqQuestions.options[3].length ||
+        mcqQuestions.correctOption === 0
+      ) {
+        alert("Enter All details");
+        return;
+      }
+
       const formData = {
         passage,
-        mcqQuestions
+        mcqQuestions,
       };
 
-
-      await axios.post("http://localhost:5000/builder/ComprehensionSubmit", formData);
+      await axios.post(
+        "http://localhost:5000/builder/ComprehensionSubmit",
+        formData
+      );
       alert("submitted successfully!");
       handleReset();
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form. Please try again later.");
     }
-  }
+  };
 
   return (
     <div className="w-60vw mt-10 m-1 border shadow-lg p-3">
       <div className="w-50vw p-5">
-      <h1 className="text-center text-3xl font-bold text-indigo-500 m-5">Question 3</h1>
+        <h1 className="text-center text-3xl font-bold text-indigo-500 m-5">
+          Question 3
+        </h1>
         <div className="border-b mb-4">
           <h2 className="text-xl font-bold text-indigo-500">Passage</h2>
           <textarea
@@ -53,10 +76,11 @@ const ComprehensionForm = () => {
             placeholder="Write the passage..."
             className="w-full p-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500"
           />
-          
         </div>
         <div className="border-b mb-4">
-          <h2 className="text-xl font-bold text-indigo-500 mb-3">MCQ Questions</h2>
+          <h2 className="text-xl font-bold text-indigo-500 mb-3">
+            MCQ Questions
+          </h2>
           {mcqQuestions.map((mcq, index) => (
             <div key={index} className="mb-4 border rounded-md p-4">
               <h3 className="text-lg font-semibold mb-2">
@@ -85,10 +109,10 @@ const ComprehensionForm = () => {
                       type="radio"
                       name={`mcq-${index}`}
                       value={optionIndex}
-                    //   checked={mcq.correctOption === optionIndex+1}
+                      //   checked={mcq.correctOption === optionIndex+1}
                       onChange={() => {
                         const updatedQuestions = [...mcqQuestions];
-                        updatedQuestions[index].correctOption = optionIndex+1;
+                        updatedQuestions[index].correctOption = optionIndex + 1;
                         setMcqQuestions(updatedQuestions);
                       }}
                     />
@@ -105,7 +129,6 @@ const ComprehensionForm = () => {
                     />
                   </div>
                 ))}
-                
               </div>
             </div>
           ))}

@@ -45,6 +45,11 @@ const ClozeForm = () => {
 
   const handleSubmit = async () => {
     try {
+       if(!questionSentence || !options.length){
+        alert("Please enter all details")
+        return;
+       }
+
       const formData = {
         preview,
         questionSentence,
